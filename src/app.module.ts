@@ -2,6 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerModule } from './customers/customer.module';
 import { AccountModule } from './accounts/account.module';
+import {Customer} from './customers/entities/customer.entity';
+import { Account } from './accounts/entities/account.entity';
+
+
 
 @Module({
   imports: [
@@ -10,13 +14,12 @@ import { AccountModule } from './accounts/account.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'yourpassword',
+      password: 'Vaish2712',
       database: 'customer_db',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'], // ✅ Correct entity path
-      synchronize: false,
-      autoLoadEntities: true,
+      synchronize: true,
+      entities: [Account,Customer],
     }),
-    CustomerModule,  // ✅ Import CustomerModule instead of defining Customer again
+    CustomerModule,  
     AccountModule,
   ],
 })

@@ -13,5 +13,5 @@ export class Account {
   balance: number;
 
   @ManyToOne(() => Customer, (customer) => customer.accounts)
-  customer: Customer; // ✅ Ensure this property exists
+  customer: Customer; 
 }

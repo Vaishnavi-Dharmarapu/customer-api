@@ -17,16 +17,27 @@ export class CustomerService {
   }
 
   // Get customer by ID
-  async getById(customerId: number): Promise<Customer> {
-    const customer = await this.customerRepository.findOneBy({ id: customerId });
-    if (!customer) {
-      throw new Error('Customer not found');
-    }
-    return customer;
+  async getById(id: number): Promise<Customer> {
+    return this.customerRepository.findOne({
+      where: { id }, // Passing 'where' for the ID search
+    });
   }
 
   // Get all customers
   async getAll(): Promise<Customer[]> {
     return this.customerRepository.find();
+  }
+
+  // Update an existing customer by ID
+  async update(id: number, customerData: Partial<Customer>): Promise<Customer> {
+    await this.customerRepository.update(id, customerData);
+    return this.customerRepository.findOne({
+      where: { id }, // Correct usage of 'where'
+    });
+  }
+
+  // Delete a customer by ID
+  async delete(id: number): Promise<void> {
+    await this.customerRepository.delete(id);
   }
 }

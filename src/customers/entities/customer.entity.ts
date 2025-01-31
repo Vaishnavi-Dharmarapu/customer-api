@@ -16,5 +16,5 @@ export class Customer {
   corporateId: string;
 
   @OneToMany(() => Account, (account) => account.customer)
-  accounts: Account[]; // ✅ Corrected
+  accounts: Account[]; 
 }

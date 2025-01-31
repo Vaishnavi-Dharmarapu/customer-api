@@ -6,10 +6,9 @@ export const AppDataSource = new DataSource({
   host: 'localhost',
   port: 5432,
   username: 'postgres',
-  password: 'yourpassword',
+  password: 'Vaish2712',
   database: 'customer_db',
-  entities: [__dirname + '/**/*.entity{.ts,.js}'],  // ✅ Fix duplicate entity issue
-  migrations: [__dirname + '/migrations/*.ts'],
+  entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: false,
   logging: true,
 });

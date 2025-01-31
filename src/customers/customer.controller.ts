@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Param, Body } from '@nestjs/common';
+import { Controller, Post, Get, Param, Body, Put, Delete } from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { Customer } from './entities/customer.entity';
 
@@ -22,5 +22,20 @@ export class CustomerController {
   @Get()
   async getAll(): Promise<Customer[]> {
     return this.customerService.getAll();
+  }
+
+  // Update an existing customer by ID
+  @Put(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() customerData: Partial<Customer>,
+  ): Promise<Customer> {
+    return this.customerService.update(id, customerData);
+  }
+
+  // Delete a customer by ID
+  @Delete(':id')
+  async delete(@Param('id') id: number): Promise<void> {
+    return this.customerService.delete(id);
   }
 }
